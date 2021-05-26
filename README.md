@@ -1,23 +1,23 @@
-### 1. 项目基本内容
+#### 1.基本介绍
 
-#### 1. 使用技术
+该项目是基于Web的Mongodb数据库管理工具。
 
-1. SpringBoot+Mongodb+Vue
-2. 连接Mongodb工具使用mongo-driver
+![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220734.png)
+
+![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220756.png)![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220823.png)![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220907.png)
 
 #### 2. 功能点
 
-1. 连接Mongodb数据库（可以切换数据的连接，识别副本集）
-2. 展示Mongodb数据库内的数据库信息（**过滤admin和local数据库**）
-3. 展示Mongodb数据库内的集合信息（**过滤系统集合system.***)
-4. 展示集合内的所有文档信息
-5. **插入文档**，**更新文档**，**删除文档**，**导出文档**接口可视化操作
-6. 嵌入式的mongo shell命令行工具（**提供基本的命令操作，聚合操作**）
+1. github第三方权限认证
+2. 连接Mongodb数据库（可以切换数据的连接单连接）
+3. 展示Mongodb数据库内的数据库信息（**过滤admin和local数据库**）
+4. 展示Mongodb数据库内的集合信息（**过滤系统集合system.***)
+5. 展示集合内的所有文档信息
+6. **插入文档**，**更新文档**，**删除文档**，**导出文档**
+7. 嵌入式的mongo shell命令行工具CodeMirror（**支持$find, $sort等**）
+8. Gridfs文件存储，支持**下载，删除**
 
-#### 3. 已实现功能点
+#### 3. 如何使用
 
-1. 2021-05-13：构建项目。确定使用大体框架，mongo-driver，数据传输方式，以及实现功能的先后顺序及分工
-2. 2021-05-14：尝试使用mongo-driver连接数据库，并初步获取mongodb数据库信息，数据库，集合信息。考虑安全问题应该过滤哪些系统表
-3. 2021-05-15：确定前端thymeleaf+AdminLTE，着手搭建前端
-4. 2021-05-15：将接口的Json数据初步呈现在前端，封装公用layout组件调整整个页面的组件布局，加入codeMirror在线代码编辑以及dataTables非动态数据的分页
-5. 2021-05-16：对dataTables表格数据进行后端分页并着手实现文档的增加，删除功能
+1. `git clone git@github.com:ammi3/mongo-admin.git`
+2. 更改**application.yml**内的mongodb数据库连接信息
