@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mongo-admin | Index</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/datatables/css/jquery.dataTables.css}">
+    <link rel="stylesheet" th:href="@{/plugins/datatables/css/dataTables.bootstrap4.css}">
+    <link rel="stylesheet" th:href="@{/plugins/codemirror/codemirror.css}">
+    <link rel="stylesheet" th:href="@{/plugins/codemirror/theme/monokai.css}">
+    <link rel="stylesheet" th:href="@{/plugins/codemirror/addon/hint/show-hint.css}">
+</head>
+
+<aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a th:href="@{/oauthed/default}" class="brand-link">
+        <img th:src="@{/images/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Mongo-admin</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+<!--            <button type="button" class="btn btn-block btn-secondary" onclick="App.addServer()"><i class="fas fa-plus"></i> 新增连接</button>-->
+            <span class="btn btn-secondary col fileinput-button" onclick="App.addServer('/oauthed/addServer')">
+                <i class="fas fa-plus"></i>
+                <span>Add Server</span>
+              </span>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <li class="nav-item menu-open" th:each="connect : ${cache}">
+<!--                    <a  class="nav-link ">-->
+<!--                        <p>-->
+<!--                            Dashboard-->
+<!--                            <i class="right fas fa-angle-left"></i>-->
+<!--                        </p>-->
+                        <a th:href="@{'/oauthed/change/'+${connect}}" >
+                            <button type="button" class="btn btn-block btn-secondary btn-sm">
+                                <span th:text="${connect}"></span>
+                            </button>
+                        </a>
+<!--                    </a>-->
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item" th:each="dbName : ${dbNames}">
+                            <a th:href="@{'/db/'+${dbName}}" class="nav-link">
+                                <p th:text="${dbName}">
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+<!-- Modal -->
+<div th:fragment="modal" class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">温馨提示</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">${message}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button id="btnModalOk" type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div th:fragment="addServer" class="modal fade" id="modal-default-addServer">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">新增连接</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="quickForm">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="host">Host</label>
+                            <input type="text" name="host" class="form-control" id="host" placeholder="host">
+                        </div>
+                        <div class="form-group">
+                            <label for="port">Port</label>
+                            <input type="text" name="port" class="form-control" id="port" placeholder="port">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="auth">Auth</label>
+                            <input type="password" name="auth" class="form-control" id="auth" placeholder="auth">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button id="btnModalOk-addServer" type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<footer th:fragment="footer" class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.1.0
+    </div>
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+</footer>
+
+<th:block th:fragment="script">
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <!-- Bootstrap 4 -->
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/js/adminlte.min.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+    <script th:src="@{/plugins/datatables/js/jquery.dataTables.js}"></script>
+    <script th:src="@{/plugins/datatables/js/dataTables.bootstrap4.js}"></script>
+</th:block>
