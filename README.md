@@ -2,6 +2,8 @@
 
 该项目是基于Web的Mongodb数据库管理工具。
 
+演示地址：http://47.98.136.116:8080/
+
 ![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220734.png)
 
 ![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220756.png)![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220823.png)![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220907.png)
@@ -21,3 +23,9 @@
 
 1. `git clone git@github.com:ammi3/mongo-admin.git`
 2. 更改**application.yml**内的mongodb数据库连接信息
+3. 前往Github-settings-Developer settings-OAuth-apps创建一个App，将Ip换成127.0.0.1
+
+<img src="https://supers1.oss-cn-hangzhou.aliyuncs.com/20210530122953.png" style="zoom:50%;" />
+
+4. 在RestAuthController.java更换Client Id与Client secrets
+5. 启动
