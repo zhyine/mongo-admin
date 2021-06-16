@@ -234,7 +234,7 @@ public class MongoSDK {
      * @return
      */
     public String selectOne(MongoCollection collection, String id) {
-        Bson filter = eq("_id", id);
+        Bson filter = eq("_id", new ObjectId(id));
         return diyObjectIdToJson(seleteOneDocument(collection, filter));
     }
 
@@ -261,7 +261,7 @@ public class MongoSDK {
         if(info == null) return null;
         Document document = Document.parse(diyObjectIdToJson(info));
         document.remove("_id");
-        document.put("_id", new ObjectId().toString());
+        document.put("_id", new ObjectId());
         collection.insertOne(document);
         return document.get("_id").toString();
     }
@@ -310,6 +310,7 @@ public class MongoSDK {
      */
     public  Document seleteOneDocument(MongoCollection collection, Bson filter) {
         FindIterable<Document> result = collection.find(filter);
+        System.out.println("result："+result.first());
         return result.first();
     }
 

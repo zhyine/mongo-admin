@@ -167,6 +167,7 @@ var App = function () {
      * @param url
      */
     var handlerShowDetail = function (url) {
+        console.log(url)
         $.ajax({
             "url": url,
             "type": "get",
