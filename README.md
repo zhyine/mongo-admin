@@ -2,8 +2,6 @@
 
 该项目是基于Web的Mongodb数据库管理工具。
 
-演示地址：http://47.98.136.116:8080/
-
 ![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220734.png)
 
 ![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220756.png)![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220823.png)![](https://supers1.oss-cn-hangzhou.aliyuncs.com/20210526220907.png)
